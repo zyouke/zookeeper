@@ -312,9 +312,7 @@ public class NIOServerCnxn extends ServerCnxn {
     void doIO(SelectionKey k) throws InterruptedException {
         try {
             if (isSocketOpen() == false) {
-                LOG.warn("trying to do i/o on a null socket for session:0x"
-                         + Long.toHexString(sessionId));
-
+                LOG.warn("trying to do i/o on a null socket for session:0x" + Long.toHexString(sessionId));
                 return;
             }
             if (k.isReadable()) {
