@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java templat
-/version-2
+src/main/resources/data/version-2
 *.class
 
 # Mobile Tools for Java (J2ME)
