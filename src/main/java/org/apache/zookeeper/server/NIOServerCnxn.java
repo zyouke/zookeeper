@@ -309,7 +309,6 @@ public class NIOServerCnxn extends ServerCnxn {
         try {
             if (isSocketOpen() == false) {
                 LOG.warn("trying to do i/o on a null socket for session:0x" + Long.toHexString(sessionId));
-
                 return;
             }
             if (k.isReadable()) {

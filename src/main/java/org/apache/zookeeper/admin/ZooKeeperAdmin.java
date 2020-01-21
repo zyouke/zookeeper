@@ -147,8 +147,7 @@ public class ZooKeeperAdmin extends ZooKeeper {
      *
      * @see ZooKeeper#ZooKeeper(String, int, Watcher, boolean)
      */
-    public ZooKeeperAdmin(String connectString, int sessionTimeout, Watcher watcher,
-                     boolean canBeReadOnly) throws IOException {
+    public ZooKeeperAdmin(String connectString, int sessionTimeout, Watcher watcher, boolean canBeReadOnly) throws IOException {
         super(connectString, sessionTimeout, watcher, canBeReadOnly);
     }
 

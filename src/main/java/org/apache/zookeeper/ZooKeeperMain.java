@@ -203,8 +203,7 @@ public class ZooKeeperMain {
                         options.put("readonly", "true");
                     }
                 } catch (NoSuchElementException e) {
-                    System.err.println("Error: no argument found for option "
-                            + opt);
+                    System.err.println("Error: no argument found for option " + opt);
                     return false;
                 }
 
@@ -310,18 +309,14 @@ public class ZooKeeperMain {
             // only use jline if it's in the classpath
             try {
                 Class<?> consoleC = Class.forName("jline.console.ConsoleReader");
-                Class<?> completorC =
-                        Class.forName("org.apache.zookeeper.JLineZNodeCompleter");
+                Class<?> completorC = Class.forName("org.apache.zookeeper.JLineZNodeCompleter");
 
                 System.out.println("JLine support is enabled");
 
-                Object console =
-                        consoleC.getConstructor().newInstance();
+                Object console = consoleC.getConstructor().newInstance();
 
-                Object completor =
-                        completorC.getConstructor(ZooKeeper.class).newInstance(zk);
-                Method addCompletor = consoleC.getMethod("addCompleter",
-                        Class.forName("jline.console.completer.Completer"));
+                Object completor = completorC.getConstructor(ZooKeeper.class).newInstance(zk);
+                Method addCompletor = consoleC.getMethod("addCompleter", Class.forName("jline.console.completer.Completer"));
                 addCompletor.invoke(console, completor);
 
                 String line;
@@ -348,8 +343,7 @@ public class ZooKeeperMain {
 
             if (jlinemissing) {
                 System.out.println("JLine support is disabled");
-                BufferedReader br =
-                        new BufferedReader(new InputStreamReader(System.in));
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
                 String line;
                 while ((line = br.readLine()) != null) {
