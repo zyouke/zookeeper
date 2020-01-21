@@ -76,8 +76,7 @@ public abstract class ServerCnxnFactory {
         configure(addr, maxcc, false);
     }
 
-    public abstract void configure(InetSocketAddress addr, int maxcc, boolean secure)
-            throws IOException;
+    public abstract void configure(InetSocketAddress addr, int maxcc, boolean secure) throws IOException;
 
     public abstract void reconfigure(InetSocketAddress addr);
 
@@ -100,8 +99,7 @@ public abstract class ServerCnxnFactory {
 
     // This method is to maintain compatiblity of startup(zks) and enable sharing of zks
     // when we add secureCnxnFactory.
-    public abstract void startup(ZooKeeperServer zkServer, boolean startServer)
-            throws IOException, InterruptedException;
+    public abstract void startup(ZooKeeperServer zkServer, boolean startServer)throws IOException, InterruptedException;
 
     public abstract void join() throws InterruptedException;
 
@@ -124,19 +122,16 @@ public abstract class ServerCnxnFactory {
     public abstract void closeAll();
     
     static public ServerCnxnFactory createFactory() throws IOException {
-        String serverCnxnFactoryName =
-            System.getProperty(ZOOKEEPER_SERVER_CNXN_FACTORY);
+        String serverCnxnFactoryName = System.getProperty(ZOOKEEPER_SERVER_CNXN_FACTORY);
         if (serverCnxnFactoryName == null) {
             serverCnxnFactoryName = NIOServerCnxnFactory.class.getName();
         }
         try {
-            ServerCnxnFactory serverCnxnFactory = (ServerCnxnFactory) Class.forName(serverCnxnFactoryName)
-                    .getDeclaredConstructor().newInstance();
+            ServerCnxnFactory serverCnxnFactory = (ServerCnxnFactory) Class.forName(serverCnxnFactoryName).getDeclaredConstructor().newInstance();
             LOG.info("Using {} as server connection factory", serverCnxnFactoryName);
             return serverCnxnFactory;
         } catch (Exception e) {
-            IOException ioe = new IOException("Couldn't instantiate "
-                    + serverCnxnFactoryName);
+            IOException ioe = new IOException("Couldn't instantiate " + serverCnxnFactoryName);
             ioe.initCause(e);
             throw ioe;
         }
